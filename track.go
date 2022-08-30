@@ -279,7 +279,7 @@ type ScanEvent struct {
 	EventType            string      `json:"eventType"`
 	ExceptionCode        string      `json:"exceptionCode"`
 	ExceptionDescription string      `json:"exceptionDescription"`
-	ScanLocation         Location    `json:"scanLocation"`
+	ScanLocation         Address     `json:"scanLocation"`
 }
 
 // ServiceCommitMessage
