@@ -16,7 +16,7 @@ type AncillaryDetails struct {
 }
 
 type DeliveryDetails struct {
-	ActualDeliveryAddress             ActualDeliveryAddress              `json:"actualDeliveryAddress"`
+	ActualDeliveryAddress             Address                            `json:"actualDeliveryAddress"`
 	DeliveryAttempts                  string                             `json:"deliveryAttempts"`
 	DeliveryOptionEligibilityDetails  []DeliveryOptionEligibilityDetails `json:"deliveryOptionEligibilityDetails"`
 	DeliveryToday                     bool                               `json:"deliveryToday"`
@@ -30,42 +30,37 @@ type DeliveryDetails struct {
 }
 
 type TrackResults struct {
-	AdditionalTrackingInfo        AdditionalTrackingInfo          `json:"additionalTrackingInfo"`
-	AvailableImages               []AvailableImages               `json:"availableImages"`
-	AvailableNotifications        []string                        `json:"availableNotifications"`
-	ConsolidationDetail           []ConsolidationDetail           `json:"consolidationDetail"`
-	CustomDeliveryOptions         []CustomDeliveryOptions         `json:"customDeliveryOptions"`
-	DateAndTimes                  []DateAndTimes                  `json:"dateAndTimes"`
-	DeliveryDetails               DeliveryDetails                 `json:"deliveryDetails"`
-	DestinationLocation           DestinationLocation             `json:"destinationLocation"`
-	DistanceToDestination         DistanceToDestination           `json:"distanceToDestination"`
-	Error                         Error                           `json:"error"`
-	EstimatedDeliveryTimeWindow   Window_sub7                     `json:"estimatedDeliveryTimeWindow"`
-	GoodsClassificationCode       string                          `json:"goodsClassificationCode"`
-	HoldAtLocation                HoldAtLocation                  `json:"holdAtLocation"`
-	InformationNotes              []InformationNotes              `json:"informationNotes"`
-	LastUpdatedDestinationAddress ActualDeliveryAddress           `json:"lastUpdatedDestinationAddress"`
-	LatestStatusDetail            LatestStatusDetail              `json:"latestStatusDetail"`
-	MeterNumber                   string                          `json:"meterNumber"`
-	OriginLocation                DestinationLocation             `json:"originLocation"`
-	PackageDetails                PackageDetails                  `json:"packageDetails"`
-	PieceCounts                   []PieceCounts                   `json:"pieceCounts"`
-	ReasonDetail                  ReasonDetail                    `json:"reasonDetail"`
-	RecipientInformation          LocationContactAndAddress_sub21 `json:"recipientInformation"`
-	ReturnDetail                  ReturnDetail                    `json:"returnDetail"`
-	ScanEvents                    []ScanEvents                    `json:"scanEvents"`
-	ServiceCommitMessage          ServiceCommitMessage            `json:"serviceCommitMessage"`
-	ServiceDetail                 ServiceDetail                   `json:"serviceDetail"`
-	ShipmentDetails               ShipmentDetails                 `json:"shipmentDetails"`
-	ShipperInformation            LocationContactAndAddress_sub21 `json:"shipperInformation"`
-	SpecialHandlings              []SpecialHandlings              `json:"specialHandlings"`
-	StandardTransitTimeWindow     Window_sub7                     `json:"standardTransitTimeWindow"`
-	TrackingNumberInfo            TrackingNumberInfo              `json:"trackingNumberInfo"`
-}
-
-type LocationContactAndAddress_sub21 struct {
-	Address ActualDeliveryAddress `json:"address"`
-	Contact Contact               `json:"contact"`
+	AdditionalTrackingInfo        AdditionalTrackingInfo    `json:"additionalTrackingInfo"`
+	AvailableImages               []AvailableImages         `json:"availableImages"`
+	AvailableNotifications        []string                  `json:"availableNotifications"`
+	ConsolidationDetail           []ConsolidationDetail     `json:"consolidationDetail"`
+	CustomDeliveryOptions         []CustomDeliveryOptions   `json:"customDeliveryOptions"`
+	DateAndTimes                  []DateAndTimes            `json:"dateAndTimes"`
+	DeliveryDetails               DeliveryDetails           `json:"deliveryDetails"`
+	DestinationLocation           DestinationLocation       `json:"destinationLocation"`
+	DistanceToDestination         DistanceToDestination     `json:"distanceToDestination"`
+	Error                         Error                     `json:"error"`
+	EstimatedDeliveryTimeWindow   Window_sub7               `json:"estimatedDeliveryTimeWindow"`
+	GoodsClassificationCode       string                    `json:"goodsClassificationCode"`
+	HoldAtLocation                HoldAtLocation            `json:"holdAtLocation"`
+	InformationNotes              []InformationNotes        `json:"informationNotes"`
+	LastUpdatedDestinationAddress Address                   `json:"lastUpdatedDestinationAddress"`
+	LatestStatusDetail            LatestStatusDetail        `json:"latestStatusDetail"`
+	MeterNumber                   string                    `json:"meterNumber"`
+	OriginLocation                DestinationLocation       `json:"originLocation"`
+	PackageDetails                PackageDetails            `json:"packageDetails"`
+	PieceCounts                   []PieceCounts             `json:"pieceCounts"`
+	ReasonDetail                  ReasonDetail              `json:"reasonDetail"`
+	RecipientInformation          LocationContactAndAddress `json:"recipientInformation"`
+	ReturnDetail                  ReturnDetail              `json:"returnDetail"`
+	ScanEvents                    []ScanEvents              `json:"scanEvents"`
+	ServiceCommitMessage          ServiceCommitMessage      `json:"serviceCommitMessage"`
+	ServiceDetail                 ServiceDetail             `json:"serviceDetail"`
+	ShipmentDetails               ShipmentDetails           `json:"shipmentDetails"`
+	ShipperInformation            LocationContactAndAddress `json:"shipperInformation"`
+	SpecialHandlings              []SpecialHandlings        `json:"specialHandlings"`
+	StandardTransitTimeWindow     Window_sub7               `json:"standardTransitTimeWindow"`
+	TrackingNumberInfo            TrackingNumberInfo        `json:"trackingNumberInfo"`
 }
 
 type LocationContactAndAddress struct {
@@ -79,13 +74,13 @@ type Output struct {
 }
 
 type LatestStatusDetail struct {
-	AncillaryDetails []AncillaryDetails    `json:"ancillaryDetails"`
-	Code             string                `json:"code"`
-	DelayDetail      DelayDetail           `json:"delayDetail"`
-	DerivedCode      string                `json:"derivedCode"`
-	Description      string                `json:"description"`
-	ScanLocation     ActualDeliveryAddress `json:"scanLocation"`
-	StatusByLocale   string                `json:"statusByLocale"`
+	AncillaryDetails []AncillaryDetails `json:"ancillaryDetails"`
+	Code             string             `json:"code"`
+	DelayDetail      DelayDetail        `json:"delayDetail"`
+	DerivedCode      string             `json:"derivedCode"`
+	Description      string             `json:"description"`
+	ScanLocation     Address            `json:"scanLocation"`
+	StatusByLocale   string             `json:"statusByLocale"`
 }
 
 type ReturnDetail struct {
@@ -112,22 +107,11 @@ type TrackingNumberInfo struct {
 	TrackingNumberUniqueID string `json:"trackingNumberUniqueId"`
 }
 
-type ActualDeliveryAddress struct {
-	City                string   `json:"city"`
-	Classification      string   `json:"classification"`
-	CountryCode         string   `json:"countryCode"`
-	CountryName         string   `json:"countryName"`
-	PostalCode          string   `json:"postalCode"`
-	Residential         bool     `json:"residential"`
-	StateOrProvinceCode string   `json:"stateOrProvinceCode"`
-	StreetLines         []string `json:"streetLines"`
-	UrbanizationCode    string   `json:"urbanizationCode"`
-}
-
 type Address struct {
 	City                string   `json:"city"`
 	Classification      string   `json:"classification"`
 	CountryCode         string   `json:"countryCode"`
+	CountryName         string   `json:"countryName,omitempty"` // modified, not necessarily always present
 	PostalCode          string   `json:"postalCode"`
 	Residential         bool     `json:"residential"`
 	StateOrProvinceCode string   `json:"stateOrProvinceCode"`
@@ -278,9 +262,9 @@ type DestinationLocation struct {
 }
 
 type HoldAtLocation struct {
-	LocationContactAndAddress LocationContactAndAddress_sub21 `json:"locationContactAndAddress"`
-	LocationID                string                          `json:"locationId"`
-	LocationType              string                          `json:"locationType"`
+	LocationContactAndAddress LocationContactAndAddress `json:"locationContactAndAddress"`
+	LocationID                string                    `json:"locationId"`
+	LocationType              string                    `json:"locationType"`
 }
 
 type ServiceCommitMessage struct {
