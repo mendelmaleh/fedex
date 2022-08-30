@@ -9,22 +9,22 @@ type TrackResponse struct {
 }
 
 type Output struct {
-	Alerts               string                 `json:"alerts"`
-	CompleteTrackResults []CompleteTrackResults `json:"completeTrackResults"`
+	Alerts               string                `json:"alerts"`
+	CompleteTrackResults []CompleteTrackResult `json:"completeTrackResults"`
 }
 
-type CompleteTrackResults struct {
-	TrackResults   []TrackResults `json:"trackResults"`
-	TrackingNumber string         `json:"trackingNumber"`
+type CompleteTrackResult struct {
+	TrackResults   []TrackResult `json:"trackResults"`
+	TrackingNumber string        `json:"trackingNumber"`
 }
 
-type TrackResults struct {
+type TrackResult struct {
 	AdditionalTrackingInfo        AdditionalTrackingInfo    `json:"additionalTrackingInfo"`
-	AvailableImages               []AvailableImages         `json:"availableImages"`
+	AvailableImages               []AvailableImage          `json:"availableImages"`
 	AvailableNotifications        []string                  `json:"availableNotifications"`
 	ConsolidationDetail           []ConsolidationDetail     `json:"consolidationDetail"`
-	CustomDeliveryOptions         []CustomDeliveryOptions   `json:"customDeliveryOptions"`
-	DateAndTimes                  []DateAndTimes            `json:"dateAndTimes"`
+	CustomDeliveryOptions         []CustomDeliveryOption    `json:"customDeliveryOptions"`
+	DateAndTimes                  []DateAndTime             `json:"dateAndTimes"`
 	DeliveryDetails               DeliveryDetails           `json:"deliveryDetails"`
 	DestinationLocation           DestinationLocation       `json:"destinationLocation"`
 	DistanceToDestination         DistanceToDestination     `json:"distanceToDestination"`
@@ -32,42 +32,42 @@ type TrackResults struct {
 	EstimatedDeliveryTimeWindow   Window_sub7               `json:"estimatedDeliveryTimeWindow"`
 	GoodsClassificationCode       string                    `json:"goodsClassificationCode"`
 	HoldAtLocation                HoldAtLocation            `json:"holdAtLocation"`
-	InformationNotes              []InformationNotes        `json:"informationNotes"`
+	InformationNotes              []InformationNote         `json:"informationNotes"`
 	LastUpdatedDestinationAddress Address                   `json:"lastUpdatedDestinationAddress"`
 	LatestStatusDetail            LatestStatusDetail        `json:"latestStatusDetail"`
 	MeterNumber                   string                    `json:"meterNumber"`
 	OriginLocation                DestinationLocation       `json:"originLocation"`
 	PackageDetails                PackageDetails            `json:"packageDetails"`
-	PieceCounts                   []PieceCounts             `json:"pieceCounts"`
+	PieceCounts                   []PieceCount              `json:"pieceCounts"`
 	ReasonDetail                  ReasonDetail              `json:"reasonDetail"`
 	RecipientInformation          LocationContactAndAddress `json:"recipientInformation"`
 	ReturnDetail                  ReturnDetail              `json:"returnDetail"`
-	ScanEvents                    []ScanEvents              `json:"scanEvents"`
+	ScanEvents                    []ScanEvent               `json:"scanEvents"`
 	ServiceCommitMessage          ServiceCommitMessage      `json:"serviceCommitMessage"`
 	ServiceDetail                 ServiceDetail             `json:"serviceDetail"`
 	ShipmentDetails               ShipmentDetails           `json:"shipmentDetails"`
 	ShipperInformation            LocationContactAndAddress `json:"shipperInformation"`
-	SpecialHandlings              []SpecialHandlings        `json:"specialHandlings"`
+	SpecialHandlings              []SpecialHandling         `json:"specialHandlings"`
 	StandardTransitTimeWindow     Window_sub7               `json:"standardTransitTimeWindow"`
 	TrackingNumberInfo            TrackingNumberInfo        `json:"trackingNumberInfo"`
 }
 
 // AdditionalTrackingInfo
 type AdditionalTrackingInfo struct {
-	HasAssociatedShipments bool                 `json:"hasAssociatedShipments"`
-	Nickname               string               `json:"nickname"`
-	PackageIdentifiers     []PackageIdentifiers `json:"packageIdentifiers"`
-	ShipmentNotes          string               `json:"shipmentNotes"`
+	HasAssociatedShipments bool                `json:"hasAssociatedShipments"`
+	Nickname               string              `json:"nickname"`
+	PackageIdentifiers     []PackageIdentifier `json:"packageIdentifiers"`
+	ShipmentNotes          string              `json:"shipmentNotes"`
 }
 
-type PackageIdentifiers struct {
+type PackageIdentifier struct {
 	TrackingNumberUniqueID string `json:"trackingNumberUniqueId"`
 	Type                   string `json:"type"`
 	Value                  string `json:"value"`
 }
 
-// AvailableImages
-type AvailableImages struct {
+// AvailableImage
+type AvailableImage struct {
 	Size string `json:"size"`
 	Type string `json:"type"`
 }
@@ -86,8 +86,8 @@ type ReasonDetail struct {
 	Type        string `json:"type"`
 }
 
-// CustomDeliveryOptions
-type CustomDeliveryOptions struct {
+// CustomDeliveryOption
+type CustomDeliveryOption struct {
 	Description                string                     `json:"description"`
 	RequestedAppointmentDetail RequestedAppointmentDetail `json:"requestedAppointmentDetail"`
 	Status                     string                     `json:"status"`
@@ -110,25 +110,25 @@ type Window struct {
 	Ends   string `json:"ends"`
 }
 
-// DateAndTimes
-type DateAndTimes struct {
+// DateAndTime
+type DateAndTime struct {
 	DateTime string `json:"dateTime"`
 	Type     string `json:"type"`
 }
 
 // DeliveryDetails
 type DeliveryDetails struct {
-	ActualDeliveryAddress             Address                            `json:"actualDeliveryAddress"`
-	DeliveryAttempts                  string                             `json:"deliveryAttempts"`
-	DeliveryOptionEligibilityDetails  []DeliveryOptionEligibilityDetails `json:"deliveryOptionEligibilityDetails"`
-	DeliveryToday                     bool                               `json:"deliveryToday"`
-	DestinationServiceArea            string                             `json:"destinationServiceArea"`
-	DestinationServiceAreaDescription string                             `json:"destinationServiceAreaDescription"`
-	LocationDescription               string                             `json:"locationDescription"`
-	LocationType                      string                             `json:"locationType"`
-	OfficeOrderDeliveryMethod         string                             `json:"officeOrderDeliveryMethod"`
-	ReceivedByName                    string                             `json:"receivedByName"`
-	SignedByName                      string                             `json:"signedByName"`
+	ActualDeliveryAddress             Address                           `json:"actualDeliveryAddress"`
+	DeliveryAttempts                  string                            `json:"deliveryAttempts"`
+	DeliveryOptionEligibilityDetails  []DeliveryOptionEligibilityDetail `json:"deliveryOptionEligibilityDetails"`
+	DeliveryToday                     bool                              `json:"deliveryToday"`
+	DestinationServiceArea            string                            `json:"destinationServiceArea"`
+	DestinationServiceAreaDescription string                            `json:"destinationServiceAreaDescription"`
+	LocationDescription               string                            `json:"locationDescription"`
+	LocationType                      string                            `json:"locationType"`
+	OfficeOrderDeliveryMethod         string                            `json:"officeOrderDeliveryMethod"`
+	ReceivedByName                    string                            `json:"receivedByName"`
+	SignedByName                      string                            `json:"signedByName"`
 }
 
 type Address struct {
@@ -143,7 +143,7 @@ type Address struct {
 	UrbanizationCode    string   `json:"urbanizationCode"`
 }
 
-type DeliveryOptionEligibilityDetails struct {
+type DeliveryOptionEligibilityDetail struct {
 	Eligibility string `json:"eligibility"`
 	Option      string `json:"option"`
 }
@@ -174,12 +174,12 @@ type DistanceToDestination struct {
 
 // Error
 type Error struct {
-	Code          string          `json:"code"`
-	Message       string          `json:"message"`
-	ParameterList []ParameterList `json:"parameterList"`
+	Code          string      `json:"code"`
+	Message       string      `json:"message"`
+	ParameterList []Parameter `json:"parameterList"`
 }
 
-type ParameterList struct {
+type Parameter struct {
 	Key   string `json:"key"`
 	Value string `json:"value"`
 }
@@ -191,24 +191,24 @@ type HoldAtLocation struct {
 	LocationType              string                    `json:"locationType"`
 }
 
-// InformationNotes
-type InformationNotes struct {
+// InformationNote
+type InformationNote struct {
 	Code        string `json:"code"`
 	Description string `json:"description"`
 }
 
 // LatestStatusDetail
 type LatestStatusDetail struct {
-	AncillaryDetails []AncillaryDetails `json:"ancillaryDetails"`
-	Code             string             `json:"code"`
-	DelayDetail      DelayDetail        `json:"delayDetail"`
-	DerivedCode      string             `json:"derivedCode"`
-	Description      string             `json:"description"`
-	ScanLocation     Address            `json:"scanLocation"`
-	StatusByLocale   string             `json:"statusByLocale"`
+	AncillaryDetails []AncillaryDetail `json:"ancillaryDetails"`
+	Code             string            `json:"code"`
+	DelayDetail      DelayDetail       `json:"delayDetail"`
+	DerivedCode      string            `json:"derivedCode"`
+	Description      string            `json:"description"`
+	ScanLocation     Address           `json:"scanLocation"`
+	StatusByLocale   string            `json:"statusByLocale"`
 }
 
-type AncillaryDetails struct {
+type AncillaryDetail struct {
 	Action            string `json:"action"`
 	ActionDescription string `json:"actionDescription"`
 	Reason            string `json:"reason"`
@@ -256,8 +256,8 @@ type Weight struct {
 	Value string `json:"value"`
 }
 
-// PieceCounts
-type PieceCounts struct {
+// PieceCount
+type PieceCount struct {
 	Count       string `json:"count"`
 	Description string `json:"description"`
 	Type        string `json:"type"`
@@ -269,8 +269,8 @@ type ReturnDetail struct {
 	ReasonDetail      []ReasonDetail `json:"reasonDetail"`
 }
 
-// ScanEvents
-type ScanEvents struct {
+// ScanEvent
+type ScanEvent struct {
 	Date                 string              `json:"date"`
 	DelayDetail          DelayDetail         `json:"delayDetail"`
 	DerivedStatus        string              `json:"derivedStatus"`
@@ -297,29 +297,29 @@ type ServiceDetail struct {
 
 // ShipmentDetails
 type ShipmentDetails struct {
-	BeforePossessionStatus bool             `json:"beforePossessionStatus"`
-	ContentPieceCount      string           `json:"contentPieceCount"`
-	Contents               []Contents       `json:"contents"`
-	SplitShipments         []SplitShipments `json:"splitShipments"`
-	Weight                 []Weight         `json:"weight"`
+	BeforePossessionStatus bool            `json:"beforePossessionStatus"`
+	ContentPieceCount      string          `json:"contentPieceCount"`
+	Contents               []Content       `json:"contents"`
+	SplitShipments         []SplitShipment `json:"splitShipments"`
+	Weight                 []Weight        `json:"weight"`
 }
 
-type Contents struct {
+type Content struct {
 	Description      string `json:"description"`
 	ItemNumber       string `json:"itemNumber"`
 	PartNumber       string `json:"partNumber"`
 	ReceivedQuantity string `json:"receivedQuantity"`
 }
 
-type SplitShipments struct {
+type SplitShipment struct {
 	PieceCount        string `json:"pieceCount"`
 	StatusCode        string `json:"statusCode"`
 	StatusDescription string `json:"statusDescription"`
 	Timestamp         string `json:"timestamp"`
 }
 
-// SpecialHandlings
-type SpecialHandlings struct {
+// SpecialHandling
+type SpecialHandling struct {
 	Description string `json:"description"`
 	PaymentType string `json:"paymentType"`
 	Type        string `json:"type"`
