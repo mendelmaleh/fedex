@@ -19,37 +19,37 @@ type CompleteTrackResult struct {
 }
 
 type TrackResult struct {
-	AdditionalTrackingInfo        AdditionalTrackingInfo    `json:"additionalTrackingInfo"`
-	AvailableImages               []AvailableImage          `json:"availableImages"`
-	AvailableNotifications        []string                  `json:"availableNotifications"`
-	ConsolidationDetail           []ConsolidationDetail     `json:"consolidationDetail"`
-	CustomDeliveryOptions         []CustomDeliveryOption    `json:"customDeliveryOptions"`
-	DateAndTimes                  []DateAndTime             `json:"dateAndTimes"`
-	DeliveryDetails               DeliveryDetails           `json:"deliveryDetails"`
-	DestinationLocation           DestinationLocation       `json:"destinationLocation"`
-	DistanceToDestination         DistanceToDestination     `json:"distanceToDestination"`
-	Error                         Error                     `json:"error"`
-	EstimatedDeliveryTimeWindow   Window_sub7               `json:"estimatedDeliveryTimeWindow"`
-	GoodsClassificationCode       string                    `json:"goodsClassificationCode"`
-	HoldAtLocation                HoldAtLocation            `json:"holdAtLocation"`
-	InformationNotes              []InformationNote         `json:"informationNotes"`
-	LastUpdatedDestinationAddress Address                   `json:"lastUpdatedDestinationAddress"`
-	LatestStatusDetail            LatestStatusDetail        `json:"latestStatusDetail"`
-	MeterNumber                   string                    `json:"meterNumber"`
-	OriginLocation                DestinationLocation       `json:"originLocation"`
-	PackageDetails                PackageDetails            `json:"packageDetails"`
-	PieceCounts                   []PieceCount              `json:"pieceCounts"`
-	ReasonDetail                  ReasonDetail              `json:"reasonDetail"`
-	RecipientInformation          LocationContactAndAddress `json:"recipientInformation"`
-	ReturnDetail                  ReturnDetail              `json:"returnDetail"`
-	ScanEvents                    []ScanEvent               `json:"scanEvents"`
-	ServiceCommitMessage          ServiceCommitMessage      `json:"serviceCommitMessage"`
-	ServiceDetail                 ServiceDetail             `json:"serviceDetail"`
-	ShipmentDetails               ShipmentDetails           `json:"shipmentDetails"`
-	ShipperInformation            LocationContactAndAddress `json:"shipperInformation"`
-	SpecialHandlings              []SpecialHandling         `json:"specialHandlings"`
-	StandardTransitTimeWindow     Window_sub7               `json:"standardTransitTimeWindow"`
-	TrackingNumberInfo            TrackingNumberInfo        `json:"trackingNumberInfo"`
+	AdditionalTrackingInfo        AdditionalTrackingInfo `json:"additionalTrackingInfo"`
+	AvailableImages               []AvailableImage       `json:"availableImages"`
+	AvailableNotifications        []string               `json:"availableNotifications"`
+	ConsolidationDetail           []ConsolidationDetail  `json:"consolidationDetail"`
+	CustomDeliveryOptions         []CustomDeliveryOption `json:"customDeliveryOptions"`
+	DateAndTimes                  []DateAndTime          `json:"dateAndTimes"`
+	DeliveryDetails               DeliveryDetails        `json:"deliveryDetails"`
+	DestinationLocation           Location               `json:"destinationLocation"`
+	DistanceToDestination         DistanceToDestination  `json:"distanceToDestination"`
+	Error                         Error                  `json:"error"`
+	EstimatedDeliveryTimeWindow   TimeWindow             `json:"estimatedDeliveryTimeWindow"`
+	GoodsClassificationCode       string                 `json:"goodsClassificationCode"`
+	HoldAtLocation                HoldAtLocation         `json:"holdAtLocation"`
+	InformationNotes              []InformationNote      `json:"informationNotes"`
+	LastUpdatedDestinationAddress Address                `json:"lastUpdatedDestinationAddress"`
+	LatestStatusDetail            LatestStatusDetail     `json:"latestStatusDetail"`
+	MeterNumber                   string                 `json:"meterNumber"`
+	OriginLocation                Location               `json:"originLocation"`
+	PackageDetails                PackageDetails         `json:"packageDetails"`
+	PieceCounts                   []PieceCount           `json:"pieceCounts"`
+	ReasonDetail                  ReasonDetail           `json:"reasonDetail"`
+	RecipientInformation          ContactAndAddress      `json:"recipientInformation"`
+	ReturnDetail                  ReturnDetail           `json:"returnDetail"`
+	ScanEvents                    []ScanEvent            `json:"scanEvents"`
+	ServiceCommitMessage          ServiceCommitMessage   `json:"serviceCommitMessage"`
+	ServiceDetail                 ServiceDetail          `json:"serviceDetail"`
+	ShipmentDetails               ShipmentDetails        `json:"shipmentDetails"`
+	ShipperInformation            ContactAndAddress      `json:"shipperInformation"`
+	SpecialHandlings              []SpecialHandling      `json:"specialHandlings"`
+	StandardTransitTimeWindow     TimeWindow             `json:"standardTransitTimeWindow"`
+	TrackingNumberInfo            TrackingNumberInfo     `json:"trackingNumberInfo"`
 }
 
 // AdditionalTrackingInfo
@@ -95,11 +95,11 @@ type CustomDeliveryOption struct {
 }
 
 type RequestedAppointmentDetail struct {
-	Date   string        `json:"date"`
-	Window []Window_sub7 `json:"window"`
+	Date   string       `json:"date"`
+	Window []TimeWindow `json:"window"`
 }
 
-type Window_sub7 struct {
+type TimeWindow struct {
 	Description string `json:"description"`
 	Type        string `json:"type"`
 	Window      Window `json:"window"`
@@ -148,14 +148,14 @@ type DeliveryOptionEligibilityDetail struct {
 	Option      string `json:"option"`
 }
 
-// DestinationLocation
-type DestinationLocation struct {
-	LocationContactAndAddress LocationContactAndAddress `json:"locationContactAndAddress"`
-	LocationID                string                    `json:"locationId"`
-	LocationType              string                    `json:"locationType"`
+// Location
+type Location struct {
+	ContactAndAddress ContactAndAddress `json:"locationContactAndAddress"`
+	ID                string            `json:"locationId"`
+	Type              string            `json:"locationType"`
 }
 
-type LocationContactAndAddress struct {
+type ContactAndAddress struct {
 	Address Address `json:"address"`
 	Contact Contact `json:"contact"`
 }
@@ -186,9 +186,9 @@ type Parameter struct {
 
 // HoldAtLocation
 type HoldAtLocation struct {
-	LocationContactAndAddress LocationContactAndAddress `json:"locationContactAndAddress"`
-	LocationID                string                    `json:"locationId"`
-	LocationType              string                    `json:"locationType"`
+	LocationContactAndAddress ContactAndAddress `json:"locationContactAndAddress"`
+	LocationID                string            `json:"locationId"`
+	LocationType              string            `json:"locationType"`
 }
 
 // InformationNote
@@ -271,15 +271,15 @@ type ReturnDetail struct {
 
 // ScanEvent
 type ScanEvent struct {
-	Date                 string              `json:"date"`
-	DelayDetail          DelayDetail         `json:"delayDetail"`
-	DerivedStatus        string              `json:"derivedStatus"`
-	DerivedStatusCode    string              `json:"derivedStatusCode"`
-	EventDescription     string              `json:"eventDescription"`
-	EventType            string              `json:"eventType"`
-	ExceptionCode        string              `json:"exceptionCode"`
-	ExceptionDescription string              `json:"exceptionDescription"`
-	ScanLocation         DestinationLocation `json:"scanLocation"`
+	Date                 string      `json:"date"`
+	DelayDetail          DelayDetail `json:"delayDetail"`
+	DerivedStatus        string      `json:"derivedStatus"`
+	DerivedStatusCode    string      `json:"derivedStatusCode"`
+	EventDescription     string      `json:"eventDescription"`
+	EventType            string      `json:"eventType"`
+	ExceptionCode        string      `json:"exceptionCode"`
+	ExceptionDescription string      `json:"exceptionDescription"`
+	ScanLocation         Location    `json:"scanLocation"`
 }
 
 // ServiceCommitMessage
