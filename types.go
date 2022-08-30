@@ -1,4 +1,4 @@
-package main
+package fedex
 
 type OAuthResponse struct {
 	AccessToken string `json:"access_token"`

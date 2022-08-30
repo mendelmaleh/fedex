@@ -1,4 +1,4 @@
-package main
+package fedex
 
 import (
 	"bytes"

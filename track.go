@@ -1,4 +1,4 @@
-package main
+package fedex
 
 // generated with github.com/mendelmaleh/gojson
 
