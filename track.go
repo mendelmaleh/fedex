@@ -19,7 +19,7 @@ func (r *TrackResponse) Tracking() (t track.Tracking) {
 
 	for _, v := range tr.DateAndTimes {
 		if v.Type == "ESTIMATED_DELIVERY" {
-			t.Delivery = v.DateTime
+			t.Delivery = v.DateTime.Time
 			break
 		}
 	}
@@ -29,7 +29,7 @@ func (r *TrackResponse) Tracking() (t track.Tracking) {
 		t.Events[i] = track.Event{
 			Status:   v.EventDescription,
 			Location: v.ScanLocation.City,
-			Time:     v.Date,
+			Time:     v.Date.Time,
 		}
 	}
 
@@ -148,8 +148,8 @@ type Window struct {
 
 // DateAndTime
 type DateAndTime struct {
-	DateTime string `json:"dateTime"`
-	Type     string `json:"type"`
+	DateTime DateISO `json:"dateTime"`
+	Type     string  `json:"type"`
 }
 
 // DeliveryDetails
@@ -307,7 +307,7 @@ type ReturnDetail struct {
 
 // ScanEvent
 type ScanEvent struct {
-	Date                 string      `json:"date"`
+	Date                 DateISO     `json:"date"`
 	DelayDetail          DelayDetail `json:"delayDetail"`
 	DerivedStatus        string      `json:"derivedStatus"`
 	DerivedStatusCode    string      `json:"derivedStatusCode"`
