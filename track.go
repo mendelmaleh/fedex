@@ -16,9 +16,12 @@ func (r *TrackResponse) Tracking() (t track.Tracking) {
 
 	tr := ctr.TrackResults[0]
 	t.Service = tr.ServiceDetail.Description
+	t.Status = tr.LatestStatusDetail.Description
 
 	for _, v := range tr.DateAndTimes {
 		if v.Type == "ESTIMATED_DELIVERY" {
+			t.Delivery = v.DateTime.Time
+		} else if v.Type == "ACTUAL_DELIVERY" {
 			t.Delivery = v.DateTime.Time
 			break
 		}
