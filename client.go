@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+
+	"git.sr.ht/~mendelmaleh/track"
 )
 
 type Client struct {
@@ -36,7 +38,7 @@ func (c *Client) RefreshToken() error {
 	return nil
 }
 
-func (c *Client) Track(number string) (tracking TrackResponse, err error) {
+func (c *Client) Track(number string) (tracking track.Tracking, err error) {
 	if c.OAuth == (OAuthResponse{}) {
 		if err = c.RefreshToken(); err != nil {
 			return
@@ -74,9 +76,12 @@ func (c *Client) Track(number string) (tracking TrackResponse, err error) {
 		return
 	}
 
-	if err = json.NewDecoder(resp.Body).Decode(&tracking); err != nil {
+	var raw TrackResponse
+	if err = json.NewDecoder(resp.Body).Decode(&raw); err != nil {
 		return
 	}
+
+	tracking = raw.Tracking()
 
 	return
 }

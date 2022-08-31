@@ -1,5 +1,41 @@
 package fedex
 
+import "git.sr.ht/~mendelmaleh/track"
+
+func (r *TrackResponse) Tracking() (t track.Tracking) {
+	if len(r.Output.CompleteTrackResults) < 1 {
+		return
+	}
+
+	ctr := r.Output.CompleteTrackResults[0]
+	t.Number = ctr.TrackingNumber
+
+	if len(ctr.TrackResults) < 1 {
+		return
+	}
+
+	tr := ctr.TrackResults[0]
+	t.Service = tr.ServiceDetail.Description
+
+	for _, v := range tr.DateAndTimes {
+		if v.Type == "ESTIMATED_DELIVERY" {
+			t.Delivery = v.DateTime
+			break
+		}
+	}
+
+	t.Events = make([]track.Event, len(tr.ScanEvents))
+	for i, v := range tr.ScanEvents {
+		t.Events[i] = track.Event{
+			Status:   v.EventDescription,
+			Location: v.ScanLocation.City,
+			Time:     v.Date,
+		}
+	}
+
+	return
+}
+
 // generated with github.com/mendelmaleh/gojson
 
 type TrackResponse struct {
