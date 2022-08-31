@@ -3,7 +3,7 @@ module git.sr.ht/~mendelmaleh/fedex
 go 1.19
 
 require (
-	git.sr.ht/~mendelmaleh/track v0.0.0-20220830223814-d8115b158270
+	git.sr.ht/~mendelmaleh/track v0.0.0-20220831155819-4e7d8a1b76cb
 	github.com/kr/pretty v0.3.0
 	github.com/pelletier/go-toml/v2 v2.0.5
 )
